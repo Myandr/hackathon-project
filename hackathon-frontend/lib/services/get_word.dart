@@ -20,7 +20,7 @@ Future<void> sendWord(String word) async {
     if (response.statusCode == 200 || response.statusCode == 201) {
       // Antwort lesen (falls JSON)
       final data = jsonDecode(response.body);
-      print('Antwort: $data');
+      print('Antwort: $data.sentence');
     } else {
       print('Fehler: ${response.statusCode}');
       print('Response: ${response.body}');
