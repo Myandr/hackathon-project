@@ -87,3 +87,22 @@ app/
 ```
 
 Neue Provider: Klasse von `BaseAIProvider` ableiten, in `factory.py` eintragen, fertig.
+
+
+
+
+curl -X 'POST' \
+  'http://127.0.0.1:8000/chat' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "test message for you to answer"
+    }
+  ],
+  "model": "gemini-2.0-flash",
+  "temperature": 0.7,
+  "max_tokens": 100
+}'
