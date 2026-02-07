@@ -25,3 +25,14 @@ class ChatResponse(BaseModel):
     content: str = Field(..., description="Antworttext")
     model_used: str = Field(..., description="Tatsächlich genutztes Modell")
     provider: str = Field(..., description="openai | anthropic | gemini")
+
+
+class WordRequest(BaseModel):
+    """Anfrage: Ein Wort vom Frontend (z. B. per POST)."""
+    word: str = Field(..., min_length=1, description="Das Wort, das gespeichert und in einen Satz eingebaut werden soll")
+
+
+class WordResponse(BaseModel):
+    """Antwort: Gespeichertes Wort + von der KI erzeugter Satz."""
+    word: str = Field(..., description="Das gespeicherte Wort")
+    sentence: str = Field(..., description="Ein Satz, der das Wort enthält (von der KI erzeugt)")

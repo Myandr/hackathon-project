@@ -71,11 +71,34 @@ Antwort (einheitlich für alle Provider):
 }
 ```
 
+## Wort → Satz (Frontend-API)
+
+Ein Wort per POST schicken → wird temporär gespeichert → die KI erzeugt einen Satz mit diesem Wort.
+
+**Beispiel curl:**
+
+```bash
+curl -X POST http://127.0.0.1:8000/word \
+  -H "Content-Type: application/json" \
+  -d '{"word": "Haus"}'
+```
+
+Antwort:
+
+```json
+{
+  "word": "Haus",
+  "sentence": "Das Haus steht am Ende der Straße."
+}
+```
+
+Das zuletzt gespeicherte Wort abrufen: `GET http://127.0.0.1:8000/word`
+
 ## Projektstruktur
 
 ```
 app/
-  main.py         # FastAPI-App, /chat-Route
+  main.py         # FastAPI-App, /chat + /word
   config.py       # Settings aus .env
   schemas.py      # ChatRequest, ChatResponse
   ai/
@@ -105,4 +128,16 @@ curl -X 'POST' \
   "model": "gemini-2.0-flash",
   "temperature": 0.7,
   "max_tokens": 100
+}'
+
+
+
+
+
+curl -X 'POST' \
+  'http://127.0.0.1:8000/word' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "word": "string"
 }'
